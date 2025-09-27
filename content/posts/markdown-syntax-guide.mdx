@@ -1,0 +1,379 @@
+---
+title: Markdown構文ガイド - 完全版
+description: MDXで利用可能なすべてのMarkdown構文と要素を網羅したリファレンスガイド
+date: 2025-09-28
+tags: [Markdown, MDX, Reference, Guide]
+draft: true
+---
+
+このページは、MDXで利用可能なすべてのMarkdown構文を網羅したリファレンスガイドです。このページは、MDXで利用可能なすべてのMarkdown構文を網羅したリファレンスガイドです。
+このページは、MDXで利用可能なすべてのMarkdown構文を網羅したリファレンスガイドです。
+
+このページは、MDXで利用可能なすべてのMarkdown構文を網羅したリファレンスガイドです。
+
+# 見出しレベル1
+
+見出しレベル1のサンプルです。
+
+## 見出しレベル2
+
+見出しレベル2のサンプルです。
+
+### 見出しレベル3
+
+見出しレベル3のサンプルです。
+
+#### 見出しレベル4
+
+見出しレベル4のサンプルです。
+
+##### 見出しレベル5
+
+見出しレベル5のサンプルです。
+
+###### 見出しレベル6
+
+見出しレベル6のサンプルです。
+
+## テキスト装飾
+
+これは通常のテキストです。**これは太字のテキストです**。*これはイタリック体のテキストです*。***これは太字かつイタリック体のテキストです***。
+
+~~取り消し線のテキスト~~も使用できます。
+
+`インラインコード`はバッククォートで囲みます。
+
+## リンク
+
+[通常のリンク](https://example.com)
+
+[タイトル付きリンク](https://example.com "リンクのタイトル")
+
+[参照スタイルのリンク][reference]
+
+[数字参照スタイル][1]
+
+URLの自動リンク: https://example.com
+
+メールの自動リンク: example@example.com
+
+[reference]: https://example.com "参照リンクのタイトル"
+[1]: https://example.com "数字参照リンク"
+
+## リスト
+
+### 順序なしリスト
+
+- 第1レベルのアイテム
+- 別の第1レベルのアイテム
+  - 第2レベルのアイテム
+  - もう一つの第2レベル
+    - 第3レベルのアイテム
+    - さらに第3レベル
+      - 第4レベルのアイテム
+
+* アスタリスクでも可能
+* このように使えます
+  * ネストも同様
+
++ プラス記号でも可能
++ 同じように動作します
+
+### 順序付きリスト
+
+1. 最初のアイテム
+2. 二番目のアイテム
+   1. サブアイテム2.1
+   2. サブアイテム2.2
+      1. さらにネスト2.2.1
+      2. さらにネスト2.2.2
+3. 三番目のアイテム
+
+### タスクリスト
+
+- [x] 完了したタスク
+- [ ] 未完了のタスク
+- [ ] 別の未完了タスク
+  - [x] 完了したサブタスク
+  - [ ] 未完了のサブタスク
+
+## 引用
+
+> これは引用ブロックです。
+> 複数行にわたる引用も可能です。
+
+> 引用の中に**太字**や*イタリック*、`コード`も使えます。
+
+> ネストされた引用も可能です。
+>> これは二重にネストされた引用です。
+>>> さらに深くネストすることもできます。
+
+## コードブロック
+
+### インラインコード
+
+インラインコードは`const variable = "インラインコード";`のように書きます。
+
+### 基本的なコードブロック
+
+```
+これは言語指定なしのコードブロックです
+プレーンテキストとして表示されます
+```
+
+### 言語指定付きコードブロック
+
+```javascript
+// JavaScript のコード
+function greet(name) {
+  console.log(`Hello, ${name}!`);
+  return `Welcome to MDX`;
+}
+
+const result = greet("World");
+```
+
+```typescript
+// TypeScript のコード
+interface User {
+  id: number;
+  name: string;
+  email: string;
+  roles: string[];
+}
+
+class UserService {
+  private users: User[] = [];
+
+  addUser(user: User): void {
+    this.users.push(user);
+  }
+
+  getUser(id: number): User | undefined {
+    return this.users.find(u => u.id === id);
+  }
+}
+```
+
+```python
+# Python のコード
+def fibonacci(n):
+    """フィボナッチ数列のn番目の値を返す"""
+    if n <= 1:
+        return n
+    return fibonacci(n-1) + fibonacci(n-2)
+
+# リスト内包表記
+squares = [x**2 for x in range(10)]
+print(squares)
+```
+
+```css
+/* CSS のコード */
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  padding: 1rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #1a1a1a;
+    color: #ffffff;
+  }
+}
+```
+
+```bash
+#!/bin/bash
+# Bash スクリプトの例
+
+echo "システム情報を表示します"
+uname -a
+df -h
+ps aux | head -5
+```
+
+```json
+{
+  "name": "example-package",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "next": "^15.0.0"
+  }
+}
+```
+
+```yaml
+# YAML の例
+version: '3.8'
+services:
+  web:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./html:/usr/share/nginx/html
+  database:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: myapp
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: secret
+```
+
+## テーブル
+
+### 基本的なテーブル
+
+| ヘッダー1 | ヘッダー2 | ヘッダー3 |
+|----------|----------|----------|
+| セル1     | セル2     | セル3     |
+| セル4     | セル5     | セル6     |
+
+### 配置指定付きテーブル
+
+| 左寄せ | 中央寄せ | 右寄せ |
+|:------|:------:|------:|
+| 左    | 中央    | 右     |
+| AAA   | BBB    | CCC   |
+| 12345 | 67890  | 99999 |
+
+### 複雑なテーブル
+
+| 機能 | 無料プラン | プロプラン | エンタープライズ |
+|:-----|:----------:|:----------:|:----------------:|
+| ユーザー数 | 最大3人 | 最大20人 | 無制限 |
+| ストレージ | 1GB | 100GB | 無制限 |
+| サポート | メール | メール + チャット | 24時間電話対応 |
+| 料金 | ¥0 | ¥2,000/月 | お問い合わせ |
+| SLA | - | 99.9% | 99.99% |
+
+## 画像
+
+![代替テキスト](https://via.placeholder.com/600x300 "画像のタイトル")
+
+![小さい画像](https://via.placeholder.com/150x150)
+
+参照スタイルの画像:
+![代替テキスト][image1]
+
+[image1]: https://via.placeholder.com/400x200 "参照画像"
+
+## 水平線
+
+3つ以上のハイフン:
+
+---
+
+3つ以上のアスタリスク:
+
+***
+
+3つ以上のアンダースコア:
+
+___
+
+## JSX要素の埋め込み
+
+<div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
+  <p>これはJSXの<strong>埋め込み</strong>例です。</p>
+  <button className="px-4 py-2 bg-blue-500 text-white rounded">
+    クリックできません（静的）
+  </button>
+</div>
+
+## 数式表現（コードブロックとして）
+
+インライン数式の例: `E = mc^2`
+
+ブロック数式の例:
+
+```math
+\frac{n!}{k!(n-k)!} = \binom{n}{k}
+```
+
+## 脚注
+
+これは脚注付きのテキストです[^1]。別の脚注もあります[^2]。
+
+[^1]: これは最初の脚注の内容です。
+[^2]: これは二番目の脚注の内容です。長い脚注も可能で、
+    複数行にわたって記述できます。
+
+## 定義リスト風の表現
+
+**用語1**
+これは用語1の定義です。
+
+**用語2**
+これは用語2の定義です。
+同じ用語に複数の説明を記載することも可能です。
+
+## 略語の説明
+
+**HTML** (HyperText Markup Language) と **CSS** (Cascading Style Sheets) は Web開発の基本技術です。
+
+## 特殊文字とエスケープ
+
+バックスラッシュ（\）を使って特殊文字をエスケープできます。
+
+\*アスタリスク\*
+\`バッククォート\`
+\_アンダースコア\_
+\#シャープ\#
+\[角括弧\]
+
+## Emojiサポート
+
+😊 ❤️ 👍 🔥 🚀 ⭐ （Unicode絵文字を直接使用）
+
+## コメント（MDXコメント）
+
+{/* これはMDXコメントで、表示されません */}
+
+## 複合的な例
+
+### ネストされた要素の組み合わせ
+
+> **引用の中の太字テキスト**と、以下のようなリスト:
+> 1. 最初のアイテム
+>    - サブアイテムA
+>    - サブアイテムB
+> 2. `コード`を含むアイテム
+>
+> さらに引用内のコードブロック:
+> ```javascript
+> console.log("引用内のコード");
+> ```
+
+### リスト内のコードブロック
+
+1. 最初のステップ
+   ```bash
+   npm install
+   ```
+
+2. 次のステップ
+   ```bash
+   npm run dev
+   ```
+
+3. 最後のステップ
+   - ブラウザを開く
+   - `http://localhost:3000`にアクセス
+
+## まとめ
+
+このドキュメントでは、MDXで利用可能な主要なMarkdown構文をすべて網羅しました。これらの要素を組み合わせることで、リッチで表現力豊かなドキュメントを作成できます。
+
+---
+
+*最終更新: 2025年9月28日*
