@@ -18,8 +18,10 @@ function getPostBySlug(slug: string) {
 }
 
 export async function generateStaticParams() {
+  const isDevelopment = process.env.NODE_ENV === 'development' || process.env.NEXT_PUBLIC_SHOW_DRAFTS === 'true'
+
   return posts
-    .filter(post => !post.draft)
+    .filter(post => isDevelopment || !post.draft)
     .map(post => ({ slug: post.slug }))
 }
 
@@ -40,8 +42,9 @@ export async function generateMetadata({ params }: PostPageProps) {
 export default async function PostPage({ params }: PostPageProps) {
   const resolvedParams = await params
   const post = getPostBySlug(resolvedParams.slug)
+  const isDevelopment = process.env.NODE_ENV === 'development' || process.env.NEXT_PUBLIC_SHOW_DRAFTS === 'true'
 
-  if (!post || post.draft) {
+  if (!post || (!isDevelopment && post.draft)) {
     notFound()
   }
 
@@ -57,7 +60,14 @@ export default async function PostPage({ params }: PostPageProps) {
       </div>
 
       <header className="mb-8">
-        <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
+        <div className="flex items-center gap-3 mb-4">
+          <h1 className="text-4xl font-bold">{post.title}</h1>
+          {post.draft && isDevelopment && (
+            <Badge variant="outline" className="text-sm">
+              下書き
+            </Badge>
+          )}
+        </div>
         <div className="flex items-center gap-2 text-sm text-muted-foreground">
           <time>{new Date(post.date).toLocaleDateString('ja-JP')}</time>
           {post.updated && (
