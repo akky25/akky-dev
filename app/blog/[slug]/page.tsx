@@ -6,6 +6,8 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { ChevronLeft } from 'lucide-react'
 import { Separator } from '@/components/ui/separator'
+import { generateArticleMetadata } from '@/lib/seo'
+import { ArticleJsonLd } from '@/components/seo/article-json-ld'
 
 interface PostPageProps {
   params: Promise<{
@@ -33,10 +35,7 @@ export async function generateMetadata({ params }: PostPageProps) {
     return {}
   }
 
-  return {
-    title: post.title,
-    description: post.description,
-  }
+  return generateArticleMetadata(post)
 }
 
 export default async function PostPage({ params }: PostPageProps) {
@@ -50,6 +49,8 @@ export default async function PostPage({ params }: PostPageProps) {
 
   return (
     <article className="container max-w-4xl mx-auto px-4 py-8">
+      <ArticleJsonLd post={post} />
+
       <div className="mb-8">
         <Button asChild variant="ghost" size="sm">
           <Link href="/blog">
