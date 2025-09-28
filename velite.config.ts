@@ -68,6 +68,6 @@ export default defineConfig({
         },
       ],
     ],
-    copyLinkedFiles: false,
+    copyLinkedFiles: true,
   },
 });
