@@ -53,3 +53,65 @@ Posts are managed in `content/posts/*.mdx` with frontmatter validation via Zod s
 - Slug generation from filenames
 - Draft post filtering
 - Static asset copying to `public/static/`
+
+## Git Commit Convention
+
+This project follows [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) specification.
+
+### Commit Message Format
+```
+<type>[optional scope]: <description>
+
+[optional body]
+
+[optional footer(s)]
+```
+
+### Types
+- `feat`: A new feature
+- `fix`: A bug fix
+- `docs`: Documentation only changes
+- `style`: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
+- `refactor`: A code change that neither fixes a bug nor adds a feature
+- `perf`: A code change that improves performance
+- `test`: Adding missing tests or correcting existing tests
+- `chore`: Changes to the build process or auxiliary tools and libraries
+- `ci`: Changes to CI configuration files and scripts
+- `build`: Changes that affect the build system or external dependencies
+- `content`: Blog post or content additions/updates
+
+### Examples
+```bash
+# Adding a new feature
+feat: add user authentication feature
+
+# Bug fix with scope
+fix(api): correct response header error
+
+# Breaking change
+feat!: change API endpoint specification
+
+BREAKING CHANGE: response format for /api/v1/users has been changed
+
+# Adding blog post
+content: add article about Next.js 15 new features
+
+# Updating blog post
+content: update TypeScript introduction article
+
+# Adding draft post
+content(draft): add draft article about AI utilization
+```
+
+### Rules
+- Type is required
+- Use the imperative, present tense in the description
+- First line should be limited to 72 characters
+- For breaking changes, add `!` after the type or include `BREAKING CHANGE:` in the footer
+
+### Blog Content Specific Rules
+- Use `content` type for blog post additions/updates
+- Use scope to indicate draft posts: `content(draft)`
+- Include article title or main topic in commit message
+- When modifying multiple articles, describe the main changes
+- Use `content(assets)` for image or asset-only additions
