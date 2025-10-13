@@ -1,7 +1,7 @@
-import Link from "next/link";
-import { ModeToggle } from "@/components/mode-toggle";
-import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight } from 'lucide-react';
+import Link from 'next/link';
+import { ModeToggle } from '@/components/mode-toggle';
+import { Button } from '@/components/ui/button';
 
 export default function Home() {
   return (
