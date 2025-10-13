@@ -43,3 +43,9 @@ next-env.d.ts
 # velite
 .velite
 public/static
+
+# playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/

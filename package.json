@@ -12,6 +12,9 @@
     "check": "biome check .",
     "check:write": "biome check --write .",
     "typecheck": "tsc --noEmit",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:headed": "playwright test --headed",
     "prepare": "husky"
   },
   "lint-staged": {
@@ -47,6 +50,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^2.2.5",
+    "@playwright/test": "^1.56.0",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
