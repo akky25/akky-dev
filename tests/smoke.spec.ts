@@ -37,7 +37,7 @@ test.describe('Smoke Tests', () => {
 
   test('記事詳細ページが正しく表示される', async ({ page }) => {
     // 既知の記事スラッグで直接アクセス
-    await page.goto('/blog/index');
+    await page.goto('/blog/markdown-syntax-guide');
 
     // ページが完全に読み込まれるまで待機
     await page.waitForLoadState('networkidle');
@@ -55,7 +55,7 @@ test.describe('Smoke Tests', () => {
 
   test('記事詳細ページのビジュアルリグレッションテスト', async ({ page }) => {
     // 既知の記事スラッグで直接アクセス
-    await page.goto('/blog/index');
+    await page.goto('/blog/markdown-syntax-guide');
 
     // ページが完全に読み込まれるまで待機
     await page.waitForLoadState('networkidle');
@@ -74,7 +74,7 @@ test.describe('Smoke Tests', () => {
     await page.setViewportSize({ width: 390, height: 844 });
 
     // 既知の記事スラッグで直接アクセス
-    await page.goto('/blog/index');
+    await page.goto('/blog/markdown-syntax-guide');
 
     // ページが完全に読み込まれるまで待機
     await page.waitForLoadState('networkidle');
@@ -90,7 +90,7 @@ test.describe('Smoke Tests', () => {
     page,
   }) => {
     // 既知の記事スラッグで直接アクセス
-    await page.goto('/blog/index');
+    await page.goto('/blog/markdown-syntax-guide');
 
     // ページが完全に読み込まれるまで待機
     await page.waitForLoadState('networkidle');
@@ -117,7 +117,7 @@ test.describe('Smoke Tests', () => {
     await page.setViewportSize({ width: 390, height: 844 });
 
     // 既知の記事スラッグで直接アクセス
-    await page.goto('/blog/index');
+    await page.goto('/blog/markdown-syntax-guide');
 
     // ページが完全に読み込まれるまで待機
     await page.waitForLoadState('networkidle');

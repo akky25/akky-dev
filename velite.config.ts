@@ -19,11 +19,22 @@ const posts = defineCollection({
       code: s.mdx(),
     })
     .transform((data, { meta }) => {
-      // meta.path contains the file path, extract just the filename
+      // meta.path contains the file path, extract directory or filename as slug
       const pathParts = (meta.path as string | undefined)?.split('/') || [];
       const fileName =
         pathParts[pathParts.length - 1]?.replace(/\.mdx$/, '') || '';
-      const slug = fileName.replace(/^\d{4}-\d{2}-\d{2}-/, ''); // Remove date prefix if exists
+
+      // If filename is 'index', use parent directory name as slug
+      let slug: string;
+      if (fileName === 'index' && pathParts.length > 1) {
+        slug = pathParts[pathParts.length - 2] || '';
+      } else {
+        slug = fileName;
+      }
+
+      // Remove date prefix if exists
+      slug = slug.replace(/^\d{4}-\d{2}-\d{2}-/, '');
+
       return {
         ...data,
         slug,
