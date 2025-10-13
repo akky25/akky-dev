@@ -20,7 +20,7 @@ const posts = defineCollection({
     })
     .transform((data, { meta }) => {
       // meta.path contains the file path, extract just the filename
-      const pathParts = meta.path?.split('/') || [];
+      const pathParts = (meta.path as string | undefined)?.split('/') || [];
       const fileName =
         pathParts[pathParts.length - 1]?.replace(/\.mdx$/, '') || '';
       const slug = fileName.replace(/^\d{4}-\d{2}-\d{2}-/, ''); // Remove date prefix if exists
