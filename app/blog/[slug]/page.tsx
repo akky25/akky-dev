@@ -1,50 +1,54 @@
-import { notFound } from 'next/navigation'
-import { posts } from '#site/content'
-import { MDXContent } from '@/components/mdx-content'
-import Link from 'next/link'
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
-import { ChevronLeft } from 'lucide-react'
-import { Separator } from '@/components/ui/separator'
-import { generateArticleMetadata } from '@/lib/seo'
-import { ArticleJsonLd } from '@/components/seo/article-json-ld'
+import { ChevronLeft } from 'lucide-react';
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
+import { posts } from '#site/content';
+import { MDXContent } from '@/components/mdx-content';
+import { ArticleJsonLd } from '@/components/seo/article-json-ld';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Separator } from '@/components/ui/separator';
+import { generateArticleMetadata } from '@/lib/seo';
 
 interface PostPageProps {
   params: Promise<{
-    slug: string
-  }>
+    slug: string;
+  }>;
 }
 
 function getPostBySlug(slug: string) {
-  return posts.find(post => post.slug === slug)
+  return posts.find((post) => post.slug === slug);
 }
 
 export async function generateStaticParams() {
-  const isDevelopment = process.env.NODE_ENV === 'development' || process.env.NEXT_PUBLIC_SHOW_DRAFTS === 'true'
+  const isDevelopment =
+    process.env.NODE_ENV === 'development' ||
+    process.env.NEXT_PUBLIC_SHOW_DRAFTS === 'true';
 
   return posts
-    .filter(post => isDevelopment || !post.draft)
-    .map(post => ({ slug: post.slug }))
+    .filter((post) => isDevelopment || !post.draft)
+    .map((post) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata({ params }: PostPageProps) {
-  const resolvedParams = await params
-  const post = getPostBySlug(resolvedParams.slug)
+  const resolvedParams = await params;
+  const post = getPostBySlug(resolvedParams.slug);
 
   if (!post) {
-    return {}
+    return {};
   }
 
-  return generateArticleMetadata(post)
+  return generateArticleMetadata(post);
 }
 
 export default async function PostPage({ params }: PostPageProps) {
-  const resolvedParams = await params
-  const post = getPostBySlug(resolvedParams.slug)
-  const isDevelopment = process.env.NODE_ENV === 'development' || process.env.NEXT_PUBLIC_SHOW_DRAFTS === 'true'
+  const resolvedParams = await params;
+  const post = getPostBySlug(resolvedParams.slug);
+  const isDevelopment =
+    process.env.NODE_ENV === 'development' ||
+    process.env.NEXT_PUBLIC_SHOW_DRAFTS === 'true';
 
   if (!post || (!isDevelopment && post.draft)) {
-    notFound()
+    notFound();
   }
 
   return (
@@ -74,13 +78,15 @@ export default async function PostPage({ params }: PostPageProps) {
           {post.updated && (
             <>
               <Separator orientation="vertical" className="h-4" />
-              <span>更新: {new Date(post.updated).toLocaleDateString('ja-JP')}</span>
+              <span>
+                更新: {new Date(post.updated).toLocaleDateString('ja-JP')}
+              </span>
             </>
           )}
         </div>
         {post.tags.length > 0 && (
           <div className="mt-4 flex gap-2 flex-wrap">
-            {post.tags.map(tag => (
+            {post.tags.map((tag) => (
               <Badge key={tag} variant="outline">
                 {tag}
               </Badge>
@@ -91,5 +97,5 @@ export default async function PostPage({ params }: PostPageProps) {
 
       <MDXContent code={post.content} />
     </article>
-  )
+  );
 }

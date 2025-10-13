@@ -1,36 +1,39 @@
-import { Metadata } from 'next'
-import { siteConfig } from './site-config'
+import type { Metadata } from 'next';
+import { siteConfig } from './site-config';
 
 interface Post {
-  title: string
-  description: string
-  slug: string
-  date: string
-  updated?: string
-  cover?: string
-  tags?: string[]
+  title: string;
+  description: string;
+  slug: string;
+  date: string;
+  updated?: string;
+  cover?: string;
+  tags?: string[];
 }
 
 // 画像URLを正規化（相対パスを絶対URLに変換）
-function normalizeImageUrl(imagePath: string | undefined, slug: string): string {
+function normalizeImageUrl(
+  imagePath: string | undefined,
+  slug: string,
+): string {
   if (!imagePath) {
     // カバー画像がない場合はOG画像生成エンドポイントを使用
-    return `${siteConfig.url}/og/${slug}`
+    return `${siteConfig.url}/og/${slug}`;
   }
 
   // すでに完全なURLの場合はそのまま返す
   if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
-    return imagePath
+    return imagePath;
   }
 
   // 相対パスを絶対URLに変換
-  return new URL(imagePath, siteConfig.url).toString()
+  return new URL(imagePath, siteConfig.url).toString();
 }
 
 // 記事用メタデータ生成
 export function generateArticleMetadata(post: Post): Metadata {
-  const url = new URL(`/blog/${post.slug}`, siteConfig.url)
-  const ogImageUrl = normalizeImageUrl(post.cover, post.slug)
+  const url = new URL(`/blog/${post.slug}`, siteConfig.url);
+  const ogImageUrl = normalizeImageUrl(post.cover, post.slug);
 
   return {
     title: post.title,
@@ -65,13 +68,13 @@ export function generateArticleMetadata(post: Post): Metadata {
       creator: siteConfig.social.twitter,
     },
     keywords: post.tags?.join(', '),
-  }
+  };
 }
 
 // 構造化データ（JSON-LD）構築
 export function buildJsonLd(post: Post) {
-  const url = `${siteConfig.url}/blog/${post.slug}`
-  const imageUrl = normalizeImageUrl(post.cover, post.slug)
+  const url = `${siteConfig.url}/blog/${post.slug}`;
+  const imageUrl = normalizeImageUrl(post.cover, post.slug);
 
   return {
     '@context': 'https://schema.org',
@@ -97,5 +100,5 @@ export function buildJsonLd(post: Post) {
       '@id': url,
     },
     keywords: post.tags?.join(', '),
-  }
+  };
 }

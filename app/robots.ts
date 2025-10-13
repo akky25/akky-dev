@@ -1,8 +1,8 @@
-import { MetadataRoute } from 'next'
-import { siteConfig } from '@/lib/site-config'
+import type { MetadataRoute } from 'next';
+import { siteConfig } from '@/lib/site-config';
 
 export default function robots(): MetadataRoute.Robots {
-  const siteUrl = siteConfig.url
+  const siteUrl = siteConfig.url;
 
   return {
     rules: [
@@ -12,5 +12,5 @@ export default function robots(): MetadataRoute.Robots {
       },
     ],
     sitemap: `${siteUrl}/sitemap.xml`,
-  }
+  };
 }

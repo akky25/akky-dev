@@ -1,3 +1,4 @@
+/** biome-ignore-all lint/complexity/noImportantStyles: Base styles require important for proper specificity */
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -132,17 +133,17 @@
     background-color: rgb(17 24 39);
   }
 
+  code {
+    font-family: var(--font-jetbrains-mono), monospace !important;
+    font-size: 0.875rem;
+    font-weight: 400;
+  }
+
   pre code {
     font-size: 0.875rem;
     line-height: 1.7;
     font-weight: 400;
     letter-spacing: -0.02em;
-  }
-
-  code {
-    font-family: var(--font-jetbrains-mono), monospace !important;
-    font-size: 0.875rem;
-    font-weight: 400;
   }
 
   /* Inline code */

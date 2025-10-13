@@ -1,12 +1,12 @@
-import { defineConfig, defineCollection, s } from "velite";
-import remarkGfm from "remark-gfm";
-import rehypeSlug from "rehype-slug";
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import rehypePrettyCode from "rehype-pretty-code";
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import rehypePrettyCode from 'rehype-pretty-code';
+import rehypeSlug from 'rehype-slug';
+import remarkGfm from 'remark-gfm';
+import { defineCollection, defineConfig, s } from 'velite';
 
 const posts = defineCollection({
-  name: "Post",
-  pattern: "posts/**/*.mdx",
+  name: 'Post',
+  pattern: 'posts/**/*.mdx',
   schema: s
     .object({
       title: s.string().min(1),
@@ -20,10 +20,10 @@ const posts = defineCollection({
     })
     .transform((data, { meta }) => {
       // meta.path contains the file path, extract just the filename
-      const pathParts = meta.path?.split("/") || [];
+      const pathParts = meta.path?.split('/') || [];
       const fileName =
-        pathParts[pathParts.length - 1]?.replace(/\.mdx$/, "") || "";
-      const slug = fileName.replace(/^\d{4}-\d{2}-\d{2}-/, ""); // Remove date prefix if exists
+        pathParts[pathParts.length - 1]?.replace(/\.mdx$/, '') || '';
+      const slug = fileName.replace(/^\d{4}-\d{2}-\d{2}-/, ''); // Remove date prefix if exists
       return {
         ...data,
         slug,
@@ -34,12 +34,12 @@ const posts = defineCollection({
 });
 
 export default defineConfig({
-  root: "content",
+  root: 'content',
   output: {
-    data: ".velite",
-    assets: "public/static",
-    base: "/static/",
-    name: "[name]-[hash:6].[ext]",
+    data: '.velite',
+    assets: 'public/static',
+    base: '/static/',
+    name: '[name]-[hash:6].[ext]',
     clean: true,
   },
   collections: { posts },
@@ -50,9 +50,9 @@ export default defineConfig({
       [
         rehypeAutolinkHeadings,
         {
-          behavior: "wrap",
+          behavior: 'wrap',
           properties: {
-            className: ["anchor"],
+            className: ['anchor'],
           },
         },
       ],
@@ -60,11 +60,11 @@ export default defineConfig({
         rehypePrettyCode,
         {
           theme: {
-            light: "github-light",
-            dark: "github-dark-dimmed",
+            light: 'github-light',
+            dark: 'github-dark-dimmed',
           },
           keepBackground: true,
-          defaultLang: "plaintext",
+          defaultLang: 'plaintext',
         },
       ],
     ],

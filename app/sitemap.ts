@@ -1,21 +1,23 @@
-import { MetadataRoute } from 'next'
-import { posts } from '#site/content'
-import { siteConfig } from '@/lib/site-config'
+import type { MetadataRoute } from 'next';
+import { posts } from '#site/content';
+import { siteConfig } from '@/lib/site-config';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const isDevelopment = process.env.NODE_ENV === 'development' || process.env.NEXT_PUBLIC_SHOW_DRAFTS === 'true'
+  const isDevelopment =
+    process.env.NODE_ENV === 'development' ||
+    process.env.NEXT_PUBLIC_SHOW_DRAFTS === 'true';
 
-  const siteUrl = siteConfig.url
+  const siteUrl = siteConfig.url;
 
   // 記事のサイトマップエントリ
   const postEntries = posts
-    .filter(post => isDevelopment || !post.draft)
-    .map(post => ({
+    .filter((post) => isDevelopment || !post.draft)
+    .map((post) => ({
       url: `${siteUrl}/blog/${post.slug}`,
       lastModified: post.updated || post.date,
       priority: 0.7,
       changeFrequency: 'monthly' as const,
-    }))
+    }));
 
   return [
     {
@@ -31,5 +33,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'weekly',
     },
     ...postEntries,
-  ]
+  ];
 }

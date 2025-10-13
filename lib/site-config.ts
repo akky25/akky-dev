@@ -14,18 +14,20 @@ export const siteConfig = {
   },
   locale: 'ja-JP',
   timezone: 'Asia/Tokyo',
-} as const
+} as const;
 
-export type SiteConfig = typeof siteConfig
+export type SiteConfig = typeof siteConfig;
 
 // 環境変数チェック付きのサイトURL取得
 export function getSiteUrl(): string {
-  const url = process.env.NEXT_PUBLIC_SITE_URL
+  const url = process.env.NEXT_PUBLIC_SITE_URL;
 
   if (!url) {
-    console.warn('NEXT_PUBLIC_SITE_URL is not set. Using default: http://localhost:3000')
-    return 'http://localhost:3000'
+    console.warn(
+      'NEXT_PUBLIC_SITE_URL is not set. Using default: http://localhost:3000',
+    );
+    return 'http://localhost:3000';
   }
 
-  return url
+  return url;
 }

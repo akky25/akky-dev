@@ -1,13 +1,15 @@
-import Link from 'next/link'
-import { posts } from '#site/content'
-import { Badge } from '@/components/ui/badge'
+import Link from 'next/link';
+import { posts } from '#site/content';
+import { Badge } from '@/components/ui/badge';
 
 export default function BlogPage() {
-  const isDevelopment = process.env.NODE_ENV === 'development' || process.env.NEXT_PUBLIC_SHOW_DRAFTS === 'true'
+  const isDevelopment =
+    process.env.NODE_ENV === 'development' ||
+    process.env.NEXT_PUBLIC_SHOW_DRAFTS === 'true';
 
   const filteredPosts = posts
-    .filter(post => isDevelopment || !post.draft)
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .filter((post) => isDevelopment || !post.draft)
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   return (
     <div className="container max-w-4xl mx-auto px-4 py-8">
@@ -32,7 +34,7 @@ export default function BlogPage() {
               </time>
               {post.tags.length > 0 && (
                 <div className="flex gap-2 flex-wrap mt-2">
-                  {post.tags.map(tag => (
+                  {post.tags.map((tag) => (
                     <Badge key={tag} variant="secondary" className="text-xs">
                       {tag}
                     </Badge>
@@ -50,5 +52,5 @@ export default function BlogPage() {
         )}
       </div>
     </div>
-  )
+  );
 }
